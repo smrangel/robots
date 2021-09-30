@@ -1,0 +1,42 @@
+#!/bin/bash
+source x-auto
+if [[ $3 = 'pull' ]]; then
+    echo "pull"
+    rar=$(cat ./$1/version)
+    math=$(echo "scale=4; "$rar"+.001" | bc)
+    echo $math
+    git commit -m $math
+    git remote add origin https://github.com/smrangel/robots.git
+    git branch -M $2 #dev
+    git push -u origin main
+fi
+if [[ $3 = 'add' ]]; then
+    echo 'add'
+    sed -i 's/^ *//; s/ *$//; /^$/d; /^\s*$/d; s/^\t*//; s/\t*$//;' ./$1/$2
+    while IFS='' read -r line; do
+      cd ~/robots/gpg/
+      vb=$(find . -path ./*$line)
+      git add $vb
+      cd $1
+      pwd
+      sed -i -e s/$line//g $2
+      arch_null "enc" $line
+      # $2 --> gits
+<< 'Comment'
+      if [[ 0 -eq $(awk '{print $1}' <<< $(wc -c enc)) ]]; then
+         echo $line > enc
+      fi
+      if [[ 0 -ne $(awk '{print $1}' <<< $(wc -c enc)) ]]; then
+		if [[ -z $(grep -n $line enc | sed -e 's/:/ /g' | awk '{print $1}') ]]; then
+        	#si se encuentra a una coincidencia del archivo dentro de enc entonces, no volver a escribirla
+		ko=$(grep $line enc)
+		echo 'ko:' $ko
+		echo $line >> enc
+		fi
+		if [[ '' != $(grep -n $line $2 | sed -e 's/:/ /g' | awk '{print $1}') ]]; then
+    		echo "la linea ya estaba"
+		fi
+     fi
+Comment
+    done < ~/robots/gpg/$1/$2
+fi
