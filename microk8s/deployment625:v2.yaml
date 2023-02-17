@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: robots
-        image: smrangel/robot-ini:latest
+        image: smrangel/robot-ini:v0.002
         imagePullPolicy: IfNotPresent        
         ports:
         - containerPort: 3000

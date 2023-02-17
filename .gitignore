@@ -15,3 +15,4 @@ terraform/
 !/microk8s/deployment625.yaml
 !/microk8s/service625.yaml
 !/microk8s/deployment625:v2.yaml
+!/microk8s/deployment625:v1.yaml
