@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: robots
+  labels:         #posiblemente se elimine
+    role: robots  #posiblemente se elimine
+spec:
+  replicas: 5
+  selector:
+    matchLabels:   
+      app: robots    #este no estaba originalmente, pero se encuentra en el yaml del servicio
+      role: robots   #posiblemente se elimine
+      tier: rust     #posiblemente se elimine
+  template:
+    metadata:
+      labels:        
+        app: robots  #este no estaba originalmente, pero se encuentra en el yaml del servicio
+        role: robots #posiblemente se elimine
+        tier: rust   #posiblemente se elimine#posiblemente se elimine
+    spec:
+      containers:
+      - name: robots
+        image: smrangel/robot-ini:v0.001
+        imagePullPolicy: IfNotPresent        
+        ports:
+        - containerPort: 3000
