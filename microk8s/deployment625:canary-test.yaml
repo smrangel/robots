@@ -2,25 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: robots
+  name: robots3
   labels:         #posiblemente se elimine
-    role: robots  #posiblemente se elimine
+    role: robots3  #posiblemente se elimine
 spec:
   replicas: 5
   selector:
     matchLabels:   
-      app: robots    #este no estaba originalmente, pero se encuentra en el yaml del servicio
-      role: robots   #posiblemente se elimine
+      app: robots3    #este no estaba originalmente, pero se encuentra en el yaml del servicio
+      role: robots3   #posiblemente se elimine
       tier: rust     #posiblemente se elimine
   template:
     metadata:
       labels:        
-        app: robots  #este no estaba originalmente, pero se encuentra en el yaml del servicio
-        role: robots #posiblemente se elimine
+        app: robots3  #este no estaba originalmente, pero se encuentra en el yaml del servicio
+        role: robots3 #posiblemente se elimine
         tier: rust   #posiblemente se elimine#posiblemente se elimine
     spec:
       containers:
-        - name: robots
+        - name: robots3
           image: smrangel/robot-ini:v0.002
           imagePullPolicy: IfNotPresent        
           ports:

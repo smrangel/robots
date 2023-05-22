@@ -4,7 +4,7 @@ docker/
 gits/
 gpg/
 GPG-instruc
-microk8s/
+microk8s/*
 nginx/
 nodejs/
 pico/

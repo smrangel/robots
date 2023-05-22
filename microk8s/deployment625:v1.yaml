@@ -2,25 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: robots
+  name: robots2
   labels:
-    role: robots
+    role: robots2
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: robots
-      role: robots
+      app: robots2
+      role: robots2
       tier: rust
   template:
     metadata:
       labels:
-        app: robots
-        role: robots
+        app: robots2
+        role: robots2
         tier: rust
     spec:
       containers:
-        - name: robots
+        - name: robots2
           image: smrangel/robot-ini:v0.001
           imagePullPolicy: IfNotPresent
           ports:
